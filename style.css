@@ -18,3 +18,24 @@
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
   }
+.game-critic-form {
+    align-content: space-between;
+}
+
+div.block {
+    background-color: #0c0000;
+    height: 400px;
+    width: 300px;
+    box-shadow: 10px 10px grey;
+    padding: 10px;
+    border-radius: 10px;
+    overflow: auto;
+  }
+
+
+  img {
+    width: 300px; 
+    height: 400px;
+    box-shadow: 10px 10px rgb(14, 0, 0);
+  }
+
