@@ -1,12 +1,11 @@
-const gamesUrl = "http://localhost:3000/games"
-
+const gameUrl = "http://localhost:3000/games"
 class Game{
-    constructor(game_id, title, date, description, comment, upVotes, downVotes, image_url){
+    constructor(game_id, title, date, description, comments, upVotes, downVotes, image_url){
     this.game_id = game_id
     this.title = title
     this.date = date
     this.description = description
-    this.comment = comment
+    this.comments = comments
     this.upVotes = upVotes
     this.downVotes = downVotes
     this.image_url = image_url
@@ -14,20 +13,38 @@ class Game{
 
     static all = []
 
+    static create(postGame) {
+        let postGames = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(postGame)
+        };
+        fetch(gamesUrl, postGames)
+        .then(resp => {return resp.json();
+        })
+        .then(object => {postGame.id = object.id;
+        Game.all.push(postGame)
+            })
+        }
+
 
     static get() {
-        fetch(gamesUrl)
+        fetch(gameUrl)
         .then(resp => {return resp.json()})
         .then(data => Game.make(data))
       }
 
     static make(data) {
-        let games = data.map(games => new Game(games.game_id, games.title, games.data, games.description, games.comment, games.upVotes, games.downVotes, games.image_url))
+        let games = data.map(games => new Game(games.game_id, games.title, games.data, games.description, games.comments, games.upVotes, games.downVotes, games.image_url))
         games.forEach(game => this.renderGame(game))
     }
+  
 
     static renderGame(game) {
-       let gameBlock = document.createElement('div')
+       let gameBlock = document.querySelector('#gamesection')
        gameBlock.className = "block";
        gameBlock.dataset.id = game.game_id;
        gameBlock.innerHTML = `<img src=${game.image_url}>
@@ -35,31 +52,33 @@ class Game{
        <p>Description: ${game.description}</p>
        <button class= 'comments_showhide' id='comments_showhide'>comments</button>
        <br>
-       </div>
        <br>
-       <form id='comment-form' class='form' display='none' action="">
+       <br>
+       <form id='comment-form' class='form' display='' action="">
         <input type='text' name='comment' id='comment-input' cols='30' rows'10'>
         <br>
         <button id='submit'>submit</button>
         </form>
-        <div class='comment_section' display="none">
+        <div class='comment_section' display="">
       <ul>
       </ul>
-    </div>
-        `
+    </div>`
         let commentSection = gameBlock.getElementsByClassName('comment_section')[0].getElementsByTagName('ul')[0];
-        Comment.makeDb(game.comments, commentSection)
+        Comment.makeComment(game.comments, commentSection)
 
        let commentForm = gameBlock.getElementsByClassName('form')[0];
-       commentForm.style.display = "none";
+       commentForm.style.display = "";
 
-       commentForm.addEventListener('sumbit', function(e){
+       let container = gameBlock.getElementsByClassName('comment_section')[0];
+       container.style.display = "";
+
+       commentForm.addEventListener('submit', function(e){
            e.preventDefault();
            let data = {
                content: e.target.comment.value,
                game_id: e.target.parentNode.dataset.id
            }
-           Game.formSubmit(data);
+           Comment.submit(data);
            this.getElementsByTagName('input').comment.value = ''
        });
        let blocks = Array.prototype.slice.call(document.getElementsByClassName('block'))

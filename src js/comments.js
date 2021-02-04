@@ -1,4 +1,4 @@
-class Comments {
+class Comment {
     constructor(content, game_id) {
         this.content = content
         this.game_id = game_id
@@ -11,10 +11,11 @@ class Comments {
     get id() {
     return this._id
     }
+    
     static all = []
 
     static create(newComment) {
-        let newComment = {
+        let configCom = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -22,7 +23,7 @@ class Comments {
             },
             body: JSON.stringify(newComment)
         };
-        fetch(commentsUrl, newComment)
+        fetch(commentsUrl, configCom)
         .then(resp => {return resp.json();
         })
         .then(object => {newComment.id = object.id;
@@ -37,7 +38,7 @@ class Comments {
         commentArea.getElementsByTagName('button')[0].addEventListener('click', function(e){
             e.preventDefault();
             commentArea.parentNode.removeChild(commentArea);
-            Comment.delete(newComment)
+            Comment.submit(newComment)
             })
         })
     }
@@ -59,6 +60,24 @@ class Comments {
         fetch(commentsUrl + `${cm.id}`, configComm)
     }
 
+    static makeComment(coms,list){
+        coms.forEach(com => {
+          let line = document.createElement('li');
+          line.innerHTML = `<p>${comment.content}    <button id='delete'>delete</button>`;
+          line.getElementsByTagName('button')[0].addEventListener('click',function(e){
+            e.preventDefault();
+            Comment.delete(coms);
+            line.parentNode.removeChild(line)
+          })
+          list.appendChild(line)
+        })
+      }
     
+    static submit(object){
+        let comment = new Comment(object.content,object.game_id);
+        Comment.create(comment);
+    }
+
+
 }
 
