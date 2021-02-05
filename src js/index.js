@@ -1,5 +1,9 @@
-const commentsUrl = "http://localhost:3000/comments"
-const gamesUrl = "http://localhost:3000/games"
-const upVote = "⬆️"
-const downVote = "⬇️"
-const main = document.querySelector('main');
+const api = new API()
+
+api.fetchGames()
+.then(games => 
+    { games.forEach(game => {
+        const gg = new Game(game)
+    })
+
+})
