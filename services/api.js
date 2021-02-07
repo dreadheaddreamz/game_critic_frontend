@@ -1,15 +1,9 @@
 class API {
-    constructor(port = 3000){
+    constructor(port = 3000) {
         this.url = `http://localhost:${port}`
-    }
+      }
 
-    parseJSON = response => {
-        if (response.status === 200) {
-            return response.json()
-        } else {
-            throw console.error('Not possible')
-        }
-    }
+    parseJSON = response => response.json()
 
     //headers = {"Accepts": "application/json", "Content-Type": "application/json"}
 
@@ -21,18 +15,18 @@ class API {
         return fetch(this.gameurl).then(this.parseJSON)
     }
 
-    fetchGame = (id) => {
-        return fetch(this.gameurl + `/${id}`).then(this.parseJSON)
-    }
+    //fetchGame = (id) => {
+        //return fetch(this.gameurl + `/${id}`).then(this.parseJSON)
+    //}
 
-    postGames = (gameid) => {
+    postGames = (gameid, title, description, date, comments, upVotes, downVotes, image_url) => {
         return fetch(this.gameurl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({game_id: gameid, title: title, description: description, comments: comments, upVotes: upVotes, downVotes: downVotes, image_url: imageurl})
+            body: JSON.stringify({game_id: gameid, title: title, description: description, comments: comments, upVotes: upVotes, downVotes: downVotes, image_url: image_url, date:date})
         }).then(this.parseJSON)
     }
 }

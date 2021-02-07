@@ -1,3 +1,21 @@
+main {
+  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+div.area {
+  height: 400px;
+    width: 300px;
+    box-shadow: 10px 10px grey;
+    padding: 10px;
+    border-radius: 10px;
+    overflow: auto;
+}
+
 .formfield * {
     vertical-align: middle;
 }
@@ -7,6 +25,12 @@
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
+  }
+
+  div {
+    background-color: 5px #0c0000;
+    padding: 5px;
+    border-radius: 5px;
   }
 
   .up {
@@ -22,19 +46,8 @@
     align-content: space-between;
 }
 
-.gamesection {
-    background-color: #0c0000;
-    height: 400px;
-    width: 300px;
-    box-shadow: 10px 10px grey;
-    padding: 10px;
-    border-radius: 10px;
-    overflow: auto;
-  }
-
-
   img {
-    width: 300px; 
+    width: 200px; 
     height: 400px;
     box-shadow: 10px 10px rgb(14, 0, 0);
   }
@@ -58,6 +71,19 @@
 
   font {
     font: icon;
+  }
+
+
+  @media only screen and (min-width: 500px) {
+    main {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media only screen and (min-width: 850px) {
+    main {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
   }
 
   

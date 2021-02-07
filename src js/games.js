@@ -2,26 +2,31 @@ class Game{
     constructor(data) {
         this.id = data.id
         this.title = data.title
-        this.date = data.date
-        this.description = data.description
-        this.comments = data.comments
         this.upVotes = data.upVotes
         this.downVotes = data.downVotes
+        this.description = data.description
         this.image_url = data.image_url
+        this.date = data.date
+        this.comments = data.comments
+        
 
     
         function gameDepend() {
-            const games = data.map(games => new Game(games.game_id, games.title, games.data, games.description, games.comments, games.upVotes, games.downVotes, games.image_url))
+            const games = data.map(game => new Game(games.game_id, games.title, games.upVotes, games.downVotes, games.description, games.image_url, games.date, games.comments))
             games.forEach(game => this.create(game))
         }
             this.block = new GameRender(this, gameDepend)
     }
 
-    createGame = () => {
-        api.postGame(this.id)
+   static createGame = (data) => {
+        api.postGames(data.id, data.title, data.description, data.date, data.comments, data.upVotes, data.downVotes, data.image_url)
         .then(gameDepend => {
-            const newGame = new Game(gameDepend)
-            this.block.gameList(newGame)
+            let gs = document.createElement('div')
+            gs.setAttribute("data-id", gameDepend.id)
+            //gs.innerHTML = `<img src=${gameDepend.image_url}>
+            //<h5> Video Game: ${gameDepend.title}<h5>
+            //<h5> Description: ${gameDepend.description}`
+            console.log(gameDepend.image_url)
         })
         .catch(console.log)
     }
