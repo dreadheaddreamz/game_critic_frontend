@@ -21,13 +21,11 @@ class Game{
    static createGame = (data) => {
         api.postGames(data.id, data.title, data.description, data.date, data.comments, data.upVotes, data.downVotes, data.image_url)
         .then(gameDepend => {
-            let gs = document.createElement('div')
-            gs.setAttribute("data-id", gameDepend.id)
+            //let gs = document.createElement('div')
+            //gs.setAttribute("data-id", gameDepend.id)
             //gs.innerHTML = `<img src=${gameDepend.image_url}>
             //<h5> Video Game: ${gameDepend.title}<h5>
             //<h5> Description: ${gameDepend.description}`
-            console.log(gameDepend.image_url)
         })
-        .catch(console.log)
     }
 }

@@ -35,7 +35,7 @@ class GameRender {
         this.gameList = document.createElement('ul')
         area.append(this.gameList)
     
-        //this.game = game
+        this.game = game
 
         //const li = document.createElement('li')
         //this.gameList.append(li)

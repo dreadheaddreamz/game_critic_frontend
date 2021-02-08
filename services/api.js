@@ -11,15 +11,35 @@ class API {
         return this.url + '/games'
     }
 
+    get commentsUrl() {
+        return this.url + '/comments'
+    }
+
     fetchGames = () => {
         return fetch(this.gameurl).then(this.parseJSON)
+    }
+
+    fetchComments = () => {
+        return fetch(this.commentsUrl).then(this.parseJSON)
     }
 
     //fetchGame = (id) => {
         //return fetch(this.gameurl + `/${id}`).then(this.parseJSON)
     //}
 
-    postGames = (gameid, title, description, date, comments, upVotes, downVotes, image_url) => {
+    /*postComments = (content) => {
+        return fetch(this.commentsUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({content: content})
+        }).then(this.parseJSON)
+    } */
+
+
+   postGames = (gameid, title, description, date, comments, upVotes, downVotes, image_url) => {
         return fetch(this.gameurl, {
             method: "POST",
             headers: {
