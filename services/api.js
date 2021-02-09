@@ -39,7 +39,7 @@ class API {
     } */
 
 
-   postGames = (gameid, title, description, date, comments, upVotes, downVotes, image_url) => {
+    postGames = (gameid, title, description, date, comments, upVotes, downVotes, image_url) => {
         return fetch(this.gameurl, {
             method: "POST",
             headers: {

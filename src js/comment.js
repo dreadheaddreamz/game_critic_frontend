@@ -1,9 +1,13 @@
+commentUrl = "http://localhost:3000/comments"
 class Comment {
-    constructor(content) {
-        this.content = content
+    constructor(comment) {
+        this.content = comment.content,
+        this.game_id = comment.game_id
     }
+    static all = []
 
     static create(commentObj) {
+        console.log(commentObj)
         let config = {
             method: "POST",
         headers: {
@@ -12,33 +16,38 @@ class Comment {
         },
         body: JSON.stringify(commentObj)
     };
-fetch(commentsUrl, config)
+fetch(commentUrl, config)
 .then(rep => {return rep.json();
 })
 .then(object => {
     commentObj.id = object.id;
-    Comment.call.push(commentObj)
+    Comment.all.push(commentObj)
     let comArea = document.createElement('li');
     comArea.classList.add('comment');
     comArea.setAttribute("id", `${commentObj.id}`)
     comArea.innerHTML = `<p>${commentObj.content}    <button id='delete'>delete</button>`
-    let comDiv = document.querySelector('#commemnts')
-    comDiv.appendChild(comArea)
+    let area = document.getElementsByClassName('area')[(parseInt(`${commentObj.game_id}`,10))]
+    let comments = area.getElementsByClassName('comments')[0];
         })
     }
+    static makeFromDb(comments,list){
+    comments.forEach(comment => {
+    let line = document.createElement('li');
+    line.innerHTML = `<p>${comment.content}    <button id='delete'>delete</button>`;
+    line.getElementsByTagName('button')[0].addEventListener('click',function(e){
+        e.preventDefault();
+        Comment.delete(comment);
+        line.parentNode.removeChild(line)
+            })
+            list.appendChild(line)
+        })
+    }
+
+
+
     static formSubmit(object){
-        let comment = new Comment(object.content);
-        CommentRender.create(comment);
+        let comment = new Comment(object);
+        Comment.create(comment);
+        
     }
 }
-    let commentForm = document.querySelector('#comments-form')
-        commentForm.addEventListener('submit', function(e){
-            if (e){
-            e.preventDefault();
-            let data = {
-                content: e.target.value
-            }
-            Comment.formSubmit(data);
-            this.getElementByTagName('input').comment.value
-            }
-        })
