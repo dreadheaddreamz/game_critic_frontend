@@ -1,11 +1,15 @@
 main {
-  background-color: green;
+  background-color: black;
   display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-gap: 20px;
     padding-top: 10px;
     padding-bottom: 30px;
+    color: #fff;
+}
+h2{
+  color: #fff;
 }
 
 div.area {
@@ -28,12 +32,6 @@ div.area {
     padding: 3px;
   }
 
-  div {
-    background-color: 5px #0c0000;
-    padding: 5px;
-    border-radius: 5px;
-  }
-
   .up {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
@@ -50,7 +48,7 @@ div.area {
   img {
     border-radius: 8px;
     max-width: 100%; 
-    height: 350px;
+    height: 250px;
     box-shadow: 10px 10px rgb(14, 0, 0);
   }
 
@@ -60,15 +58,45 @@ div.area {
     color: #fff;
     background-color: black;
     border-radius: 10px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    color: red;
+    background: rgb(14, 0, 0);
+    box-shadow: 0 0 10px red, 0 0 40px red,0 0 80px red;
+    transition-delay: 0.5s;
   }
 
   body {
-    background-color: green;
+    background-color: black;
   }
 
-  font {
-    font: icon;
+  div.comments {
+    height: 200px;
+    width: auto;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-color: white;
+    background: black;
+    margin: 20px auto;
+    padding: 20px;
+    background-origin: padding-box;
   }
+  div.container {
+    height: 200px;
+    width: auto;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-color: white;
+    background: black;
+    margin: 20px auto;
+    padding: 20px;
+    background-origin: padding-box;
+  }
+
 
 
   @media only screen and (min-width: 500px) {

@@ -1,4 +1,4 @@
-const main = document.querySelector('main')
+/*const main = document.querySelector('main')
 
 class GameRender {
     constructor(game) {
@@ -11,9 +11,7 @@ class GameRender {
         <h5> Video Game: ${game.title}<h5>
         <h5> Description: ${game.description} <h3> Comments </h3>
         <div class="comments" id="comments"> </div>
-    
         <form id="comment-form">
-        <br>
         <br>
         <textarea name="comment" style="resize: none" placeholder="comments"></textarea>
         <br>
@@ -53,22 +51,20 @@ class GameRender {
                 comments: [],
                 image_url: e.target.image_url.value
             }
-            console.log(data)
-            Game.createGame(data);
-            //main.appendChild(data);
+            Game.formSubmit(data)
         })
         
         //const gameTitle = document.createElement('p')
         //gameTitle.innerText = game.title
         //block.append(gameTitle)
 
-        this.gameList = document.createElement('ul')
-        area.append(this.gameList)
+        //this.gameList = document.createElement('ul')
+        //area.append(this.gameList)
     
-        this.game = game
+        //this.game = game
 
         //const li = document.createElement('li')
         //this.gameList.append(li)
         //li.innerText = `${game.title}`
         }
-    }
+    }*/
