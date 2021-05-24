@@ -49,4 +49,14 @@ class API {
             body: JSON.stringify({game_id: gameid, title: title, description: description, comments: comments, upVotes: upVotes, downVotes: downVotes, image_url: image_url, date:date})
         }).then(this.parseJSON)
     }
+
+    deleteComment() {
+        return fetch(this.commentsUrl, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(respone => respone.json())
+    }
 }

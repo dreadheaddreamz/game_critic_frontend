@@ -16,7 +16,7 @@ class Comment {
         },
         body: JSON.stringify(commentObj)
     };
-fetch(commentUrl, config)
+fetch(commentUrl, config)//asynchronous
 .then(rep => {return rep.json();
 })
 .then(object => {
@@ -27,13 +27,13 @@ fetch(commentUrl, config)
     //comArea.setAttribute("id", `${commentObj.id}`)
     comArea.innerHTML = `<p id=${commentObj.id}>${commentObj.content}    <button id='delete'>delete</button>`
     let area = document.getElementsByClassName('area')[(parseInt(`${commentObj.game_id}`,10))]
-    let comments = area.getElementsByClassName('comments')[0];
+    let comments = comArea.getElementsByClassName('comments')[0];
     comArea.getElementsByTagName('button')[0].addEventListener('click',function(e){
         e.preventDefault();
         Comment.delete(commentObj);
         comPost.parentNode.removeChild(comArea)
                 })
-        e.target.parentNode.getElementsByClassName('comments')[0].append(comPost)
+        e.target.parentNode.getElementsByClassName('comments')[0].append(comPost) //returns an array [0] targets specific element
         })
     }
 
@@ -42,7 +42,7 @@ fetch(commentUrl, config)
     comments.forEach(comment => {
     let line = document.createElement('li');
     line.innerHTML = `<p id=${comment.id}>${comment.content}    <button id='delete'>delete</button>`;
-    line.getElementsByTagName('button')[0].addEventListener('click',function(e){
+    line.getElementsByTagName('button')[0].addEventListener('click',function(e){ //returns an array [0] targets specific element
         e.preventDefault();
         Comment.delete(comment);
         line.parentNode.removeChild(line)
@@ -67,7 +67,7 @@ fetch(commentUrl, config)
         },
         body: JSON.stringify(cid)
     };
-    fetch(commentUrl + `/${cid.id}`,configObj)
+    fetch(commentUrl `/${cid.id}` + configObj)
 }
 
 

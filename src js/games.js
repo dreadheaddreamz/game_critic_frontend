@@ -57,7 +57,7 @@ class Game {
             if (e){
             e.preventDefault();
             let data = {
-                id: e.target.dataset.id,
+                id: e.target.dataset.id, //dataset.id stores data and is available to current fucntion eventlistner
                 game_id: e.target.parentNode.dataset.id,
                 content: e.target.comment.value
             }
@@ -65,7 +65,7 @@ class Game {
             let comPost = document.createElement('li');
             comPost.classList.add('comment');
             comPost.innerHTML = `<p>${data.content}    <button id='delete'>delete</button>`
-            comPost.getElementsByTagName('button')[0].addEventListener('click',function(e){
+            comPost.getElementsByTagName('button')[0].addEventListener('click',function(e){ //returns an array [0] targets specific element
                 e.preventDefault();
                 Comment.delete(data);
                 comPost.parentNode.removeChild(comPost)
@@ -77,10 +77,7 @@ class Game {
         })
     }
 
-
-
-
-        static create(gameObj) {
+    static create(gameObj) {
         let config = {
             method: "POST",
         headers: {
@@ -89,7 +86,7 @@ class Game {
         },
         body: JSON.stringify(gameObj)
     };
-    fetch(gamesUrl, config)
+    fetch(gamesUrl, config) //asynchronous
     .then(resp => {return resp.json();
     })
     .then(object =>{
@@ -110,8 +107,37 @@ class Game {
         <br>
         <br>
         <button type="submit">Add Comment </button>`
-    })
-}
+
+        let commentForm = gameBlock.querySelector('#comment-form')
+        let comSection = gameBlock.querySelector('#comments')
+        Comment.makeFromDb(game.comments, comSection)
+        commentForm.addEventListener('submit', function(e) {
+            console.log(e.target.parentNode)
+            if (e){
+            e.preventDefault();
+            let data = {
+                id: e.target.dataset.id,
+                game_id: e.target.parentNode.dataset.id,
+                content: e.target.comment.value
+            }
+            Comment.formSubmit(data);
+            let comPost = document.createElement('li');
+            comPost.classList.add('comment');
+            comPost.innerHTML = `<p>${data.content}    <button id='delete'>delete</button>`
+            comPost.getElementsByTagName('button')[0].addEventListener('click',function(e){
+                e.preventDefault();
+                Comment.delete(data);
+                comPost.parentNode.removeChild(comPost)
+                    })
+            e.target.parentNode.getElementsByClassName('comments')[0].append(comPost)
+            console.log(e.target.parentNode.getElementsByClassName('comments')[0])
+            this.getElementsByTagName('textarea').comment.value = ""
+                }
+            })
+        })
+    }
+
+    
 
     static makeFromDb(games){
     games.forEach(game => {
@@ -129,9 +155,8 @@ class Game {
         api.postGames(data.id, data.title, data.description, data.date, data.comments, data.upVotes, data.downVotes, data.image_url)
         .then(game => {
             //const newGame = new Game(game)
-            //console.log(gameDepend)
+            console.log(data)
         })
         //.catch(console.log)
     }
 }
-Game

@@ -1,7 +1,7 @@
 //const main = document.querySelector('main')
 const api = new API()
 
-api.fetchGames()
+api.fetchGames() //asynchronous
 .then(games => {
   games.forEach( game => new Game(game))
 
@@ -36,6 +36,10 @@ let gameForm = document.getElementById('game-critic-form')
             <br>
             <br>
             <button type="submit">Add Comment </button>`
+            this.title.value = ""
+            this.image_url.value = ""
+            this.date.value = ""
+            this.description.value = ""
         })
 
 Game.get();
