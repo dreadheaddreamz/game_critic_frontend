@@ -50,13 +50,4 @@ class API {
         }).then(this.parseJSON)
     }
 
-    deleteComment() {
-        return fetch(this.commentsUrl, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then(respone => respone.json())
-    }
 }

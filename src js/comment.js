@@ -54,20 +54,14 @@ fetch(commentUrl, config)//asynchronous
 
     static delete(cid) {
         console.log(cid.id)
-        let data = {
-            id: cid.id,
-            content: cid.content,
-            game_id: cid.game_id
-        }
-        let configObj = {
+      let configObj = {
             method: "DELETE",
             headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
+        //"Accept": "application/json"
         },
-        body: JSON.stringify(cid)
     };
-    fetch(commentUrl `/${cid.id}` + configObj)
+    return fetch(commentUrl + `/${cid.id}`, configObj)
 }
 
 
