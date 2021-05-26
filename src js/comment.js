@@ -42,7 +42,7 @@ fetch(commentUrl, config)//asynchronous
     comments.forEach(comment => {
     let line = document.createElement('li');
     line.innerHTML = `<p id=${comment.id}>${comment.content}    <button id='delete'>delete</button>`;
-    line.getElementsByTagName('button')[0].addEventListener('click',function(e){ //returns an array [0] targets specific element
+    line.getElementsByTagName('button')[0].addEventListener('click',function(e){ //returns an array [0] targets specific element (deletes child from parent node)
         e.preventDefault();
         Comment.delete(comment);
         line.parentNode.removeChild(line)
@@ -61,7 +61,7 @@ fetch(commentUrl, config)//asynchronous
         //"Accept": "application/json"
         },
     };
-    return fetch(commentUrl + `/${cid.id}`, configObj)
+    return fetch(commentUrl + `${cid.id}`, configObj)
 }
 
 
