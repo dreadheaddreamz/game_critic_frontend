@@ -14,7 +14,7 @@ class API {
     get commentsUrl() {
         return this.url + '/comments'
     }
-
+// returning the fetch makes so if needed i can do something after the promise, like api.fetchGames.then(somehthing)
     fetchGames = () => {
         return fetch(this.gameurl).then(this.parseJSON)
     }

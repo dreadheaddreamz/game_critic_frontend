@@ -66,7 +66,7 @@ fetch(commentUrl, config)//asynchronous
 }
 
 
-
+    //creates new comment
     static formSubmit(object){
         let comment = new Comment(object);
         Comment.create(comment);
