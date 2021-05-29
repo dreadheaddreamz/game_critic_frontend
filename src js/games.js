@@ -46,7 +46,7 @@ class Game {
             <textarea name="comment" style="resize: none" placeholder="comments"></textarea>
             <br>
             <br>
-            <button type="submit">Add Comment </button>`
+            <button type="submit">Add Comment </button> <button type="delete"> Delete Game </button>`
             
 
         let commentForm = gameBlock.querySelector('#comment-form')
