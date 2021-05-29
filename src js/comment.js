@@ -6,6 +6,7 @@ class Comment {
     }
     static all = []
 
+    //post comment after add comment is clicked
     static create(commentObj) {
         console.log(commentObj)
         let config = {
@@ -37,7 +38,7 @@ fetch(commentUrl, config)//asynchronous
         })
     }
 
-
+    // renders comment from back along with event listener for button
     static makeFromDb(comments,list){
     comments.forEach(comment => {
     let line = document.createElement('li');
@@ -51,14 +52,14 @@ fetch(commentUrl, config)//asynchronous
         })
     }
 
-
+    // delete comment
     static delete(cid) {
         console.log(cid.id)
       let configObj = {
             method: "DELETE",
             headers: {
         "Content-Type": "application/json",
-        //"Accept": "application/json"
+        "Accept": "application/json"
         },
     };
     return fetch(commentUrl + `${cid.id}`, configObj)

@@ -7,6 +7,8 @@ api.fetchGames() //asynchronous
 
 })
 
+
+    //renders games after submit button is clicked
 let gameForm = document.getElementById('game-critic-form')
         gameForm.addEventListener('submit', function(e){
             e.preventDefault();

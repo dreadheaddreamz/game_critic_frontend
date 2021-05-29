@@ -1,1 +1,4 @@
-my m
+parseInt() - parses a string argument and returns an integer of the specified string or variable.
+
+static method - Neither static methods nor static properties can be called on instances of the class. Instead, they're called on the class itself.
+static methods are often utility functions, such as functions to create or clone objects,

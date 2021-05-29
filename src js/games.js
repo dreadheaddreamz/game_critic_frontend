@@ -29,7 +29,6 @@ class Game {
         static render(games) {
             games.forEach(game => Game.renderBlock(game))
         }
-
     
         static renderBlock(game){
             let gameBlock = document.createElement('div.area')
@@ -46,7 +45,7 @@ class Game {
             <textarea name="comment" style="resize: none" placeholder="comments"></textarea>
             <br>
             <br>
-            <button type="submit">Add Comment </button> <button type="delete"> Delete Game </button>`
+            <button type="submit">Add Comment </button>`
             
 
         let commentForm = gameBlock.querySelector('#comment-form')
@@ -76,8 +75,9 @@ class Game {
             }
         })
     }
-
-    static create(gameObj) {
+    
+    // create method renders and post game object along with a button to that render with each new game created to add a comment.
+   static create(gameObj) {
         let config = {
             method: "POST",
         headers: {
@@ -138,25 +138,16 @@ class Game {
     }
 
     
-
+    //shows games fromm backend
     static makeFromDb(games){
     games.forEach(game => {
     main.append(game)
         })
     }
         
-
+    //submit method for game
     static formSubmit(object){
         let comment = new Game(object);
         Game.create(comment);
-    }
-
-   static create = (data) => {
-        api.postGames(data.id, data.title, data.description, data.date, data.comments, data.upVotes, data.downVotes, data.image_url)
-        .then(game => {
-            //const newGame = new Game(game)
-            console.log(data)
-        })
-        //.catch(console.log)
     }
 }
