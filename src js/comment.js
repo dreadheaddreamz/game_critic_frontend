@@ -30,6 +30,7 @@ fetch(commentUrl, config)//asynchronous
     let area = document.getElementsByClassName('area')[(parseInt(`${commentObj.game_id}`,10))]
     let comments = comArea.getElementsByClassName('comments')[0];
     comArea.getElementsByTagName('button')[0].addEventListener('click',function(e){
+        //deletes the comment(removes child from the parentnode)
         e.preventDefault();
         Comment.delete(commentObj);
         comPost.parentNode.removeChild(comArea)
