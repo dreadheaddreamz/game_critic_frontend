@@ -2,3 +2,8 @@ parseInt() - parses a string argument and returns an integer of the specified st
 
 static method - Neither static methods nor static properties can be called on instances of the class. Instead, they're called on the class itself.
 static methods are often utility functions, such as functions to create or clone objects,
+
+flow -
+1. once a user clicks submit for new game my index.js will render the info to the page, my game.js will handle sending data to the backend and
+post the data. My comment.js file handles creating a new comment and once "add comment" is clicked this file also handles the post request to the backend.
+
